@@ -35,7 +35,7 @@ const FeeList = () => {
                                         <span className="font-medium text-green-600">{fee.to}</span>
                                     </div>
 
-                                    <div className="flex gap-2 items-center">
+                                    <div className="flex gap-5 items-center">
                                         <span>{(fee.value * 100).toFixed(1)}%</span>
 
                                         <div className="flex items-center space-x-2">

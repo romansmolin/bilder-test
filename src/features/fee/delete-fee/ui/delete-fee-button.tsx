@@ -31,7 +31,7 @@ const DeleteFeeButton: React.FC<DeleteFeeButtonProps> = ({ feeId }) => {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button size="sm" variant="destructive">
+                <Button variant="destructive">
                     <Trash2 className="w-4 h-4" />
                 </Button>
             </DialogTrigger>
