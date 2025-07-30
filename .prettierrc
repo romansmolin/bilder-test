@@ -1,0 +1,22 @@
+{
+    "importOrder": [
+        "^react",
+        "^@mui/(.*)$",
+        "^i18next$",
+        "^@components/(.*)$",
+        "^@widgets/(.*)$",
+        "^@features/(.*)$",
+        "^@entities/(.*)$",
+        "^@shared/(.*)$",
+        "^@hooks/(.*)$",
+        "^[../]",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "printWidth": 105,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "es5"
+}
