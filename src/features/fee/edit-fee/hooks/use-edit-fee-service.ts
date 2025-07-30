@@ -8,7 +8,7 @@ export const useEditFeeService = (initialFees?: Fee[]) => {
 
     useEffect(() => {
         if (!initialFees) {
-            const savedFees = localStorage.getItem('fees')
+            const savedFees = localStorage?.getItem('fees')
             if (savedFees) {
                 try {
                     setFees(JSON.parse(savedFees))

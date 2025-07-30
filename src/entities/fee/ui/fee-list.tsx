@@ -1,44 +1,16 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Check, Edit2, Trash2, X } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
+import React from 'react'
+import { DeleteFeeButton, EditFeeButton } from '@/features/fee'
+import { useLocalStorage } from '@/shared/hooks/use-local-storage'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
-import { Input } from '@/shared/ui/input'
 import { Fee } from '../model/fee.types'
 
-interface FeeListProps {
-    onDeleteFee: (id: string) => void
-    onUpdateFee: (id: string, value: number) => void
-    fees: Fee[]
-}
-
-const FeeList: React.FC<FeeListProps> = ({ onDeleteFee, fees, onUpdateFee }) => {
-    const [editingId, setEditingId] = useState<string | null>(null)
-    const [editValue, setEditValue] = useState('')
-
-    const startEditing = (fee: Fee) => {
-        setEditingId(fee.id)
-        setEditValue((fee.value * 100).toString()) // Convert to percentage for display
-    }
-
-    const saveEdit = (id: string) => {
-        const numValue = Number.parseFloat(editValue) / 100 // Convert back to decimal
-        if (isNaN(numValue) || numValue < 0) return
-
-        onUpdateFee(id, numValue)
-        setEditingId(null)
-        setEditValue('')
-    }
-
-    const cancelEdit = () => {
-        setEditingId(null)
-        setEditValue('')
-    }
-
-    const formatPercentage = (value: number) => {
-        return `${(value * 100).toFixed(1)}%`
-    }
+const FeeList = () => {
+    const [fees] = useLocalStorage<Fee[]>({
+        key: 'fees',
+        initialValue: [],
+    })
     return (
         <Card className="space-y-4 w-full">
             <CardHeader>
@@ -56,66 +28,24 @@ const FeeList: React.FC<FeeListProps> = ({ onDeleteFee, fees, onUpdateFee }) => 
                                 key={fee.id}
                                 className="flex items-center justify-between p-4 border rounded-lg"
                             >
-                                <div className="flex items-center space-x-4">
+                                <div className="flex items-center justify-between w-full space-x-4">
                                     <div className="flex items-center space-x-2">
                                         <span className="font-medium text-blue-600">{fee.from}</span>
                                         <span className="text-gray-400">→</span>
                                         <span className="font-medium text-green-600">{fee.to}</span>
                                     </div>
 
-                                    <div className="flex items-center space-x-2">
-                                        {editingId === fee.id ? (
-                                            <div className="flex items-center space-x-2">
-                                                <Input
-                                                    type="number"
-                                                    min="0"
-                                                    step="0.1"
-                                                    value={editValue}
-                                                    onChange={(e) => setEditValue(e.target.value)}
-                                                    className="w-20"
-                                                />
-                                                <span className="text-sm text-gray-500">%</span>
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    onClick={() => saveEdit(fee.id)}
-                                                    disabled={
-                                                        !editValue ||
-                                                        Number.parseFloat(editValue) < 0 ||
-                                                        isNaN(Number.parseFloat(editValue))
-                                                    }
-                                                >
-                                                    <Check className="w-4 h-4" />
-                                                </Button>
-                                                <Button size="sm" variant="outline" onClick={cancelEdit}>
-                                                    <X className="w-4 h-4" />
-                                                </Button>
-                                            </div>
-                                        ) : (
-                                            <div className="flex items-center space-x-2">
-                                                <span className="font-semibold text-lg">
-                                                    {formatPercentage(fee.value)}
-                                                </span>
-                                                <Button
-                                                    size="sm"
-                                                    variant="ghost"
-                                                    onClick={() => startEditing(fee)}
-                                                >
-                                                    <Edit2 className="w-4 h-4" />
-                                                </Button>
-                                            </div>
-                                        )}
+                                    <div className="flex gap-2 items-center">
+                                        <span>{(fee.value * 100).toFixed(1)}%</span>
+
+                                        <div className="flex items-center space-x-2">
+                                            <EditFeeButton fee={fee} />
+                                            <DeleteFeeButton feeId={fee.id} />
+                                        </div>
                                     </div>
                                 </div>
 
-                                <Button
-                                    size="sm"
-                                    variant="destructive"
-                                    onClick={() => onDeleteFee(fee.id)}
-                                    disabled={editingId === fee.id}
-                                >
-                                    <Trash2 className="w-4 h-4" />
-                                </Button>
+                                <div></div>
                             </div>
                         ))}
                     </div>

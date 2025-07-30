@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { AlertCircleIcon } from 'lucide-react'
 import { Currency } from '@/entities/currency'
-import { FeeForm, FeeList, MAX_FEES_NUMBER } from '@/entities/fee'
+import { Fee, FeeForm, MAX_FEES_NUMBER } from '@/entities/fee'
+import type { FeeFormData } from '@/entities/fee/ui/fee-form'
 import { Alert, AlertTitle } from '@/shared/ui/alert'
 import useAddFeeService from '../hooks/use-add-fee-service'
 
@@ -11,7 +13,19 @@ interface NewFeeFormProps {
 }
 
 const NewFeeForm: React.FC<NewFeeFormProps> = ({ currencies }) => {
-    const { fees, addFee, updateFee, deleteFee } = useAddFeeService()
+    const { fees, addFee } = useAddFeeService()
+
+    const [formData, setFormData] = useState<FeeFormData>({
+        from: '',
+        to: '',
+        value: '',
+    })
+
+    const handleSubmit = (fee: Omit<Fee, 'id'>) => {
+        addFee(fee)
+        setFormData({ from: '', to: '', value: '' })
+        location.reload()
+    }
 
     return (
         <div className="flex flex-col space-y-6 w-full">
@@ -26,11 +40,12 @@ const NewFeeForm: React.FC<NewFeeFormProps> = ({ currencies }) => {
             <FeeForm
                 currencies={currencies}
                 fees={fees}
-                onAddFee={addFee}
+                formData={formData}
+                onChange={setFormData}
+                onSubmit={handleSubmit}
                 title="Add New Fees"
                 description="Create and manage new currency exchange fees. Each fee represents the commission for converting from one currency to another."
             />
-            <FeeList onUpdateFee={updateFee} onDeleteFee={deleteFee} fees={fees} />
         </div>
     )
 }

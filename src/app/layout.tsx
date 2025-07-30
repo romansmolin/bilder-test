@@ -26,7 +26,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en" className="overflow-x-hidden">
+        <html lang="en" suppressHydrationWarning>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen flex flex-col overflow-x-hidden`}
             >
@@ -37,7 +37,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Header />
-                    <main className="flex-1 mx-auto min-w-[380px] max-w-[380px] lg:min-w-4xl lg:max-w-4xl py-4 md:p-4 lg:p-6">
+                    <main className="flex-1 flex flex-col space-y-6 mx-auto min-w-[380px] max-w-[380px] lg:min-w-4xl lg:max-w-4xl py-4 md:p-4 lg:p-6">
                         {children}
                     </main>
                     <Footer />
