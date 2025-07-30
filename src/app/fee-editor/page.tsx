@@ -1,5 +1,5 @@
-import { FeeEditorPage } from '@/views/fee-editor-page'
 import React from 'react'
+import { FeeEditorPage } from '@/views/fee-editor-page'
 
 const FeeEditor = () => {
     return <FeeEditorPage />

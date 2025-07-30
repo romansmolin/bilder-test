@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { Input } from '@/shared/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
-import { Label } from '@/shared/ui/label'
-import { Button } from '@/shared/ui/button'
 import { Currency } from '@/entities/currency/model/currency.type'
+import { Button } from '@/shared/ui/button'
+import { Input } from '@/shared/ui/input'
+import { Label } from '@/shared/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 import { useCurrencyCalculator } from '../hooks/use-currency-calculator'
 
 interface CurrencyCalculatorProps {

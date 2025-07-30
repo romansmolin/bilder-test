@@ -1,10 +1,11 @@
 'use client'
-import { Button } from '@/shared/ui/button'
-import { Input } from '@/shared/ui/input'
-import { Check, X, Edit2, Trash2 } from 'lucide-react'
+
 import React, { useState } from 'react'
-import { Fee } from '../model/fee.types'
+import { Check, Edit2, Trash2, X } from 'lucide-react'
+import { Button } from '@/shared/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
+import { Input } from '@/shared/ui/input'
+import { Fee } from '../model/fee.types'
 
 interface FeeListProps {
     onDeleteFee: (id: string) => void

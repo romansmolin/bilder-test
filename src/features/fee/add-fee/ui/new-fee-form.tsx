@@ -1,12 +1,10 @@
 'use client'
 
-import FeeForm from '@/entities/fee/ui/fee-form'
-import useAddFeeService from '../hooks/use-add-fee-service'
-import { Currency } from '@/entities/currency'
-import FeeList from '@/entities/fee/ui/fee-list'
-import { Alert, AlertTitle } from '@/shared/ui/alert'
 import { AlertCircleIcon } from 'lucide-react'
-import { MAX_FEES_NUMBER } from '@/entities/fee'
+import { Currency } from '@/entities/currency'
+import { FeeForm, FeeList, MAX_FEES_NUMBER } from '@/entities/fee'
+import { Alert, AlertTitle } from '@/shared/ui/alert'
+import useAddFeeService from '../hooks/use-add-fee-service'
 
 interface NewFeeFormProps {
     currencies: Currency[]

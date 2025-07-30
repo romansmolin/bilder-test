@@ -1,13 +1,13 @@
 'use client'
-import { useState, useCallback } from 'react'
+
+import { useCallback, useState } from 'react'
 import { Fee } from '@/entities/fee/model/fee.types'
 
 const useAddFeeService = () => {
     const [fees, setFees] = useState<Fee[]>([])
 
-    // Load fees from localStorage on mount
     useState(() => {
-        const savedFees = localStorage?.getItem('fees')
+        const savedFees = localStorage.getItem('fees')
         if (savedFees) {
             try {
                 setFees(JSON.parse(savedFees))
@@ -17,7 +17,6 @@ const useAddFeeService = () => {
         }
     })
 
-    // Generate unique ID for new fees
     const generateId = () => {
         return Date.now().toString() + Math.random().toString(36).substr(2, 9)
     }

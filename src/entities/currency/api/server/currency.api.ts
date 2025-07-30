@@ -1,5 +1,5 @@
-import { parseString } from 'xml2js'
 import { promisify } from 'util'
+import { parseString } from 'xml2js'
 import { Currency } from '../../model/currency.type'
 
 interface CubeData {

@@ -1,11 +1,9 @@
-import { getAvailableCurrencies } from '@/entities/currency'
-import { NewFeeForm } from '@/features/fee/add-fee'
 import React from 'react'
+import { NewFeeForm } from '@/features/fee/add-fee'
+import { getAvailableCurrencies } from '@/entities/currency'
 
 const FeeEditorPage = async () => {
     const availableCurrencies = await getAvailableCurrencies()
-
-    console.log('availableCurrencies: ', availableCurrencies)
 
     return <NewFeeForm currencies={availableCurrencies} />
 }

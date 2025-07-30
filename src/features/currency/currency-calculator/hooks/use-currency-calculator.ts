@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Currency } from '@/entities/currency/model/currency.type'
-import { Fee } from '@/entities/fee/model/fee.types'
+import { useEffect, useState } from 'react'
+import { Currency } from '@/entities/currency'
+import { Fee } from '@/entities/fee'
 import { DEFAULT_FEE } from '@/entities/fee/const/const'
 
 interface UseCurrencyCalculatorProps {

@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { Plus } from 'lucide-react'
-import { Button } from '@/shared/ui/button'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/shared/ui/card'
-import { Input } from '@/shared/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
-import { Label } from '@/shared/ui/label'
-import { Fee } from '../model/fee.types'
 import { Currency } from '@/entities/currency'
+import { Button } from '@/shared/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card'
+import { Input } from '@/shared/ui/input'
+import { Label } from '@/shared/ui/label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select'
 import { MAX_FEES_NUMBER } from '../const/const'
+import { Fee } from '../model/fee.types'
 
 export interface FeeFormProps {
     currencies: Currency[]

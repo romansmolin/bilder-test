@@ -1,8 +1,8 @@
 'use client'
 
+import { Fee } from '@/entities/fee/model/fee.types'
 import FeeForm from '@/entities/fee/ui/fee-form'
 import { useEditFeeService } from '../hooks/use-edit-fee-service'
-import { Fee } from '@/entities/fee/model/fee.types'
 
 interface EditFeeFormProps {
     currencies: string[]

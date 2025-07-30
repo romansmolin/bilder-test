@@ -1,13 +1,13 @@
 'use client'
 
+import React, { useState } from 'react'
+import { Currency, Menu } from 'lucide-react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ThemeToggle } from '@/features/theme'
 import { cn } from '@/shared/lib/css'
 import { Button } from '@/shared/ui/button'
-import { Currency, Menu } from 'lucide-react'
-import React, { useState } from 'react'
 import { menuItems } from '../const/menu-items'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
 const Header = () => {
     const pathname = usePathname()

@@ -1,14 +1,13 @@
 {
     "importOrder": [
         "^react",
-        "^@mui/(.*)$",
-        "^i18next$",
-        "^@components/(.*)$",
-        "^@widgets/(.*)$",
-        "^@features/(.*)$",
-        "^@entities/(.*)$",
-        "^@shared/(.*)$",
-        "^@hooks/(.*)$",
+        "<THIRD_PARTY_MODULES>",
+        "^@/components/(.*)$",
+        "^@/widgets/(.*)$",
+        "^@/features/(.*)$",
+        "^@/entities/(.*)$",
+        "^@/shared/(.*)$",
+        "^@/hooks/(.*)$",
         "^[../]",
         "^[./]"
     ],
@@ -18,5 +17,6 @@
     "semi": false,
     "singleQuote": true,
     "tabWidth": 4,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "plugins": ["@ianvs/prettier-plugin-sort-imports"]
 }
