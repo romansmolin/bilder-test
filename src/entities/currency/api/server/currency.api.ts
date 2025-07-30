@@ -1,5 +1,7 @@
 import { promisify } from 'util'
+import { redirect } from 'next/navigation'
 import { parseString } from 'xml2js'
+import { ErrorCode } from '@/shared/lib/errors'
 import { Currency } from '../../model/currency.type'
 
 interface CubeData {
@@ -28,6 +30,9 @@ const parseXml = promisify(parseString)
 export const getAvailableCurrencies = async (): Promise<Currency[]> => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}stats/eurofxref/eurofxref-daily.xml`)
+
+        if (!res.ok) redirect(`/error?code=${ErrorCode.EXCHANGE_RATES_NOT_FOUND}`)
+
         const xmlText = await res.text()
 
         const result = (await parseXml(xmlText)) as XMLParseResult
@@ -45,6 +50,6 @@ export const getAvailableCurrencies = async (): Promise<Currency[]> => {
             'Error while retrieving available currencies in getAvailableCurrencies method: ',
             error
         )
-        return []
+        redirect(`/error?code=${ErrorCode.EXCHANGE_RATES_NOT_FOUND}`)
     }
 }
