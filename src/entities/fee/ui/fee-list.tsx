@@ -1,16 +1,38 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DeleteFeeButton, EditFeeButton } from '@/features/fee'
-import { useLocalStorage } from '@/shared/hooks/use-local-storage'
+import useLocalStorage from '@/shared/hooks/use-local-storage'
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card'
 import { Fee } from '../model/fee.types'
 
 const FeeList = () => {
+    const [mounted, setMounted] = useState(false)
     const [fees] = useLocalStorage<Fee[]>({
         key: 'fees',
         initialValue: [],
     })
+
+    // INFO: This is require to avoid Next js errors, as it does not like to try prerender when for data rendering localStorage is used
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return (
+            <Card className="space-y-4 w-full">
+                <CardHeader>
+                    <CardTitle className="text-lg font-semibold">Current Fees (0)</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-center py-8 text-gray-500">
+                        <p>Loading fees...</p>
+                    </div>
+                </CardContent>
+            </Card>
+        )
+    }
+
     return (
         <Card className="space-y-4 w-full">
             <CardHeader>

@@ -1,36 +1,140 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Currency Exchange Calculator with Fee Management
+
+A Next.js 15 application that allows users to calculate currency exchange rates with configurable fees. Built using Feature-Sliced Design (FSD) architecture.
+
+## Features
+
+- Currency conversion with real-time exchange rates
+- Fee management system (add, edit, delete fees for currency pairs)
+- Persistent storage using localStorage
+- Server-side currency rate fetching
+- Dark/Light theme support
+- Responsive design using shadcn/ui components
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Architecture**: Feature-Sliced Design (FSD)
+- **State Management**: React Hooks + localStorage
+- **Data Fetching**: Server Components + XML parsing
+- **Form Handling**: Controlled Components
+
+## Project Structure
+
+Following FSD architecture:
+
+```
+src/
+├── app/                 # Next.js App Router pages
+├── entities/           # Business entities
+│   ├── currency/      # Currency-related logic
+│   └── fee/           # Fee management logic
+├── features/          # User features
+│   ├── currency/      # Currency conversion
+│   ├── fee/           # Fee operations
+│   └── theme/         # Theme switching
+├── shared/            # Shared utilities
+│   ├── ui/           # UI components
+│   ├── lib/          # Utility functions
+│   └── hooks/        # Custom hooks
+└── views/             # Page compositions
+```
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features Explained
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Currency Conversion
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Fetches current exchange rates from the European Central Bank
+- Server-side XML parsing using xml2js
+- Supports conversion between multiple currencies
+- Applies configured fees to conversions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Fee Management
 
-## Learn More
+- Add, edit, and delete fees for specific currency pairs
+- Fees are stored in localStorage for persistence
+- Validation to prevent duplicate fees for the same currency pair
+- Default fee fallback when no specific fee is configured
 
-To learn more about Next.js, take a look at the following resources:
+### Theme Support
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- System-based theme detection
+- Manual theme toggle
+- Persistent theme preference
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture Decisions
 
-## Deploy on Vercel
+1. **Feature-Sliced Design**: Organizes code by business domains and technical layers
+2. **Server Components**: Utilized for data fetching and initial rendering
+3. **Client Components**: Used for interactive features and localStorage access
+4. **No Global State**: Simple state management using React hooks and localStorage
+5. **No Database**: Using localStorage for persistence as per requirements
+6. **No Proxy Configuration**: Direct server-side data fetching in Next.js 15
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Component Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Controlled Components**: Forms are implemented as controlled components for better state management
+- **Composition**: Components accept render props for flexibility (e.g., FeeList accepts edit/delete buttons)
+- **Error Boundaries**: Graceful error handling for runtime errors
+- **Loading States**: Suspense boundaries for smooth loading experiences
+
+## Development Guidelines
+
+1. **State Management**:
+   - Use local state for component-specific data
+   - Use localStorage for persistent data
+   - Implement custom hooks for reusable state logic
+
+2. **Component Creation**:
+   - Place new components in appropriate FSD layers
+   - Use 'use client' directive for client-side components
+   - Implement proper TypeScript types
+
+3. **Styling**:
+   - Use Tailwind CSS classes
+   - Follow shadcn/ui component patterns
+   - Maintain consistent spacing and layout
+
+4. **Error Handling**:
+   - Implement proper error boundaries
+   - Show user-friendly error messages
+   - Log errors appropriately
+
+## Future Improvements
+
+1. Add proper backend integration
+2. Implement real-time currency rate updates
+3. Add user accounts and preferences
+4. Implement rate history tracking
+5. Add export/import functionality for fees
+6. Enhance mobile responsiveness
+7. Add more currency information and metadata
+8. Implement fee templates and presets
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

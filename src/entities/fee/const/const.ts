@@ -1,3 +1,3 @@
 export const CURRENCIES = ['EUR', 'USD', 'GBP'] as const
-export const MAX_FEES_NUMBER = 5
-export const DEFAULT_FEE = 0.01 // 1% default fee
+export const MAX_FEES_NUMBER = process.env.NEXT_PUBLIC_MAX_FEES_NUMBER
+export const DEFAULT_FEE = process.env.NEXT_PUBLIC_DEFAULT_FEE // 1% default fee

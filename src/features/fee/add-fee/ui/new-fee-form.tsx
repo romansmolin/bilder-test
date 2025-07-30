@@ -29,7 +29,7 @@ const NewFeeForm: React.FC<NewFeeFormProps> = ({ currencies }) => {
 
     return (
         <div className="flex flex-col space-y-6 w-full">
-            {fees.length >= MAX_FEES_NUMBER && (
+            {fees.length >= Number(MAX_FEES_NUMBER) && (
                 <Alert variant={'destructive'}>
                     <AlertCircleIcon />
                     <AlertTitle>

@@ -25,7 +25,7 @@ const DeleteFeeButton: React.FC<DeleteFeeButtonProps> = ({ feeId }) => {
     const handleDelete = () => {
         deleteFee(feeId)
         setIsOpen(false)
-        window.location.reload()
+        location.reload()
     }
 
     return (

@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react'
 import { Fee } from '@/entities/fee/model/fee.types'
-import { useLocalStorage } from '@/shared/hooks/use-local-storage'
+import useLocalStorage from '@/shared/hooks/use-local-storage'
 
 const useAddFeeService = () => {
     const [fees, setFees] = useLocalStorage<Fee[]>({

@@ -7,9 +7,7 @@ interface UseLocalStorageOptions<T> {
     initialValue?: T
 }
 
-export function useLocalStorage<T>({ key, initialValue }: UseLocalStorageOptions<T>) {
-    // State to store our value
-    // Pass initial state function to useState so logic is only executed once
+const useLocalStorage = <T>({ key, initialValue }: UseLocalStorageOptions<T>) => {
     const [storedValue, setStoredValue] = useState<T>(() => {
         if (typeof window === 'undefined') {
             return initialValue
@@ -24,7 +22,6 @@ export function useLocalStorage<T>({ key, initialValue }: UseLocalStorageOptions
         }
     })
 
-    // Return a wrapped version of useState's setter function that persists the new value to localStorage
     const setValue = useCallback(
         (value: T | ((val: T) => T)) => {
             try {
@@ -65,3 +62,5 @@ export function useLocalStorage<T>({ key, initialValue }: UseLocalStorageOptions
 
     return [storedValue, setValue] as const
 }
+
+export default useLocalStorage
